@@ -13,4 +13,4 @@ public class Compter_nombre_pair {
 
 }
 
-// j'utilise cette boucle pcqu'elle parcour tous les nombres de 1 à 20 itérations après itération
+// j'utilise cette boucle par ce qu'elle parcour tous les nombres de 1 à 20 itérations après itération
