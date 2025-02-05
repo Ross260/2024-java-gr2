@@ -15,10 +15,11 @@ public class CalculStatistique {
         System.out.println("La moyenne est " + Moyenne);
 
         /*
-         * CALCUL DE LA MEDIANE (le chiffre du milieu)
+         * CALCUL DE LA MEDIANE (le chiffre du milieu) & L'ECART TYPE
          * 
          * -> trier le tableau
-         * 
+         * -> Faire le calcul de la médiane
+         * ->faire le calcul de l'écart type
         */
 
        // Tri et médiane
