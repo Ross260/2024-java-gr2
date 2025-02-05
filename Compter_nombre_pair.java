@@ -7,10 +7,7 @@ public class Compter_nombre_pair {
                 System.out.println(i);
             }
         }
-
-        
     }
-
 }
 
 // j'utilise cette boucle par ce qu'elle parcour tous les nombres de 1 à 20 itérations après itération
