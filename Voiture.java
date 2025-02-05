@@ -1,20 +1,41 @@
 public class Voiture {
-    String marque;
-    String modele;
-    String couleur;
+    private String marque;
+    private String modele;
+    private String couleur;
     
+    //constructeur 
+
+    public Voiture(String marque, String modele, String couleur){
+        this.marque = marque;
+        this.modele = modele;
+        this.couleur = couleur;
+    }
+
     //methode 
-    void demarrer() {
+    public void demarrer() {
         System.out.println("ma voiture démarre");
     }
 
-    void accelerer() {
+    public void accelerer() {
         System.out.println("ma voiture accelere");
     }
 
-    void freiner() {
+    public void freiner() {
         System.out.println("ma voiture freine");
     }
 
-}
 
+    // les getters
+    public String getMarque() {
+        return this.marque;
+    }
+
+    public String getModele() {
+        return this.modele;
+    }
+
+    public String getCouleur() {
+        return this.couleur;
+    }
+
+}
