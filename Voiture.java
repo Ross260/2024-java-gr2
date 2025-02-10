@@ -4,7 +4,7 @@ public class Voiture {
     private String couleur;
     
 
-    String couleur[] = colorAutorized
+    String colorAutorized[] = {"Gris","Jaune","Bleu"};
 
     //constructeur 
 

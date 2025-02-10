@@ -42,11 +42,14 @@ public class Main {
 
         //COMPTE BANCAIRE
 
-        CompteBancaire compte1 = new CompteBancaire("Loic", 1000);
-        compte1.retirer(500);
-        compte1.deposer(300);
-        compte1.retirer(3000);
+        // CompteBancaire compte1 = new CompteBancaire("Loic", 1000);
+        // compte1.retirer(500);
+        // compte1.deposer(300);
+        // compte1.retirer(3000);
 
+
+        
+        // ANIMAL
         
 
     }
