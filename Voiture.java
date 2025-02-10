@@ -3,6 +3,9 @@ public class Voiture {
     private String modele;
     private String couleur;
     
+
+    String couleur[] = colorAutorized
+
     //constructeur 
 
     public Voiture(String marque, String modele, String couleur){

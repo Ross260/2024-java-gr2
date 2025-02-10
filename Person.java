@@ -11,6 +11,6 @@ public class Person {
     }
 
     void sePresenter(){
-        System.out.println("Je m'appeler " + this.nom + " et j'ai " + this.age + " ans");
+        System.out.println("Je m'appele " + this.nom + " et j'ai " + this.age + " ans");
     }
 }
