@@ -1,5 +1,6 @@
 package Exo_etudiant;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Scanner;
 
@@ -70,20 +71,32 @@ public class Main {
                         nom = scanner.nextLine();
 
                         /* 
+                         *-> bug sur la solution juste en bas
                          *-> trouver une methode de suppression
                         */
 
-                        int position = 0, i = 0;
-                        for (Etudiant etudiant : etudiants) {
-                            i = i + 1;
-                            if (etudiant.equals(nom)) {
-                                position = i;
+                        // int position = 0, i = 0;
+                        // for (Etudiant etudiant : etudiants) {
+                        //     i = i + 1;
+                        //     if (etudiant.equals(nom)) {
+                        //         position = i;
+                        //         break;
+                        //     }
+                           
+                        // }
+                        // etudiants.remove(position);
+
+                        //Solution
+                        Iterator<Etudiant> iterator = etudiants.iterator();
+                        while (iterator.hasNext()) {
+                            Etudiant etudiant = iterator.next();
+                            if (etudiant.getNom().equalsIgnoreCase(nom)) {
+                                iterator.remove();
+                                System.out.println("L'étudiant " + nom + " a été supprimé de la liste.");
                                 break;
                             }
-                           
                         }
-                        etudiants.remove(position);
-                        
+
                         break;
                     case 0:
                         System.out.println("Au revoir!\n");

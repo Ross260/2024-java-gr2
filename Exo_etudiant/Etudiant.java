@@ -1,6 +1,4 @@
 package Exo_etudiant;
-import java.util.ArrayList;
-import java.util.List;
 
 public class Etudiant {
     private String nom;
