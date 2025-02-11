@@ -5,7 +5,7 @@ import java.util.Scanner;
 public class Main {
     public static void main() {
        
-        /*
+        
         // Crée un objet Scanner qui lit depuis l'entrée standard (clavier)
         Scanner scanner = new Scanner(System.in);
 
@@ -30,8 +30,9 @@ public class Main {
             System.out.println(voiture.getMarque() + " " + voiture.getModele() + " " + voiture.getCouleur());
         } else {
             System.out.println("Pas de couleur");
-        } */
+        } 
         
+        scanner.close();
         // //Déclaration et initialisation de l'objet
         // Voiture voiture = new Voiture("Toyota", "V9","bleu");
         // System.out.println(voiture.getMarque() + " " + voiture.getModele() + " " + voiture.getCouleur());
