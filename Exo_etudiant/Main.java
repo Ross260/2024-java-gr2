@@ -81,8 +81,7 @@ public class Main {
                         //     if (etudiant.equals(nom)) {
                         //         position = i;
                         //         break;
-                        //     }
-                           
+                        //     }    
                         // }
                         // etudiants.remove(position);
 
