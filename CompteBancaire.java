@@ -19,7 +19,7 @@ public class CompteBancaire {
             this.solde -= montant;
             System.out.println(montant + " a été retiré du compte.");
         }else{
-            System.out.println(this.titulaire + " Vous n'avez plus que " + this.solde + " sur votre compre");
+            System.out.println(this.titulaire + " Vous n'avez plus que " + this.solde + " sur votre compte");
         }
     }    
 

@@ -4,8 +4,17 @@ import java.util.Scanner;
 
 public class Main {
     public static void main() {
+       
+        /*
+        // Crée un objet Scanner qui lit depuis l'entrée standard (clavier)
+        Scanner scanner = new Scanner(System.in);
 
-        /*boolean found = false;
+        // Demande à l'utilisateur de saisir une ligne de texte
+        System.out.println("Veuillez saisir une couleur :");
+        String couleur = scanner.nextLine();
+        System.out.println("Vous avez saisi : " + couleur);
+
+        boolean found = false;
         for(String color : Voiture.colorAutorized) {
             if (color.equals(couleur)) {
                 found = true;
@@ -15,7 +24,7 @@ public class Main {
 
         if (found) {
             //Création de la voiture
-            Voiture voiture = new Voiture("Toyota", "V9","bleu");
+            Voiture voiture = new Voiture("Toyota", "V9",couleur);
 
             //Affichage des infos de la voiture 
             System.out.println(voiture.getMarque() + " " + voiture.getModele() + " " + voiture.getCouleur());
@@ -33,13 +42,13 @@ public class Main {
 
 
         //PERSONNE
+
         // Person P1 = new Person("Ross", 12);
         
         // P1.sePresenter();
 
 
         
-
         //COMPTE BANCAIRE
 
         // CompteBancaire compte1 = new CompteBancaire("Loic", 1000);
@@ -50,6 +59,15 @@ public class Main {
 
         
         // ANIMAL
+
+
+
+        //PRODUIT(Livre & DVD)
+        Produit produit1 = new Livre(500);
+        Produit produit2 = new DVD(500);
+        produit1.calculerPrix();
+        produit2.calculerPrix();
+
         
 
     }
