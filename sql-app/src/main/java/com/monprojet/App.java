@@ -51,10 +51,12 @@ public class App
                 int id = rs.getInt("id");
                 String nom = rs.getString("nom");
                 String email = rs.getString("email");
-                System.out.println("ID : " + id + ", Nom : " + nom + ", Email : " + email);
+                String timestamp = rs.getString("created_at");
+                System.out.println("ID : " + id + ", Nom : " + nom + ", Email : " + email + "timestamp: " + timestamp);
             }
         } catch (SQLException e) {
             System.err.println("Erreur lors de l'exécution de la requête SELECT : " + e.getMessage());
         }
     }
 }
+

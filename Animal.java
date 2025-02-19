@@ -4,16 +4,16 @@ public class Animal {
     }
 }
 
-public class Chat extends Animal {
-    @Override
-    public void FaireDuBruit () {
-        System.out.println("Je miole");
-    }
-}
+// public class Chat extends Animal {
+//     @Override
+//     public void FaireDuBruit () {
+//         System.out.println("Je miole");
+//     }
+// }
 
-public class Chien extends Animal {
-    @Override
-    public void FaireDuBruit () {
-        System.out.println("Le chien aboie");
-    }
-}
+// public class Chien extends Animal {
+//     @Override
+//     public void FaireDuBruit () {
+//         System.out.println("Le chien aboie");
+//     }
+// }
