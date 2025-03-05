@@ -13,9 +13,9 @@ public class App extends Application {
         Label label = new Label("Bonjour, JavaFX !");
         
         // Créer la scène et appliquer le fichier CSS
-        Scene scene = new Scene(label, 300, 200);
+        Scene scene = new Scene(label, 600, 500);
         scene.getStylesheets().add(getClass().getResource("/styles/main.css").toExternalForm());
-
+        
         // Configurer la fenêtre principale
         primaryStage.setTitle("Ma Première Application JavaFX");
         primaryStage.setScene(scene);
