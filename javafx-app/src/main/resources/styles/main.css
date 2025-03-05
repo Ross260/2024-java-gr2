@@ -1,0 +1,10 @@
+.label {
+        -fx-text-fill : red;
+        -fx-text-align: center;
+        -fx-background-color: aqua;
+}
+.label:hover {
+        -fx-text-fill : lightgreen;
+
+        -fx-background-color: yellow;
+}
