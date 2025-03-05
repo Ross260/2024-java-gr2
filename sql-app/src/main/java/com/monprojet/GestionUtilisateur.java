@@ -9,16 +9,14 @@ import java.sql.Statement;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 
- /*
+    /*
          * 1- Ajouter un utilisateur dans la table
          * 2- Lister les utilisateur de la table
          * 3- Supprimer un utilisateur par son id
          * 4- Edit d'un utilisateur par son id
          * 5- rechercher un utilisateur par son mail et son nom
          * 
-         */
-        
-        
+    */
         
 public class GestionUtilisateur {
     ArrayList<Utilisateur> utilisateurs = new ArrayList<Utilisateur>();
