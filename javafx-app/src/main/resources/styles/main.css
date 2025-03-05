@@ -2,6 +2,8 @@
         -fx-text-fill : red;
         -fx-text-align: center;
         -fx-background-color: aqua;
+        -fx-background-image: url("../images/R.png");
+        -fx-background-size: cover;
 }
 .label:hover {
         -fx-text-fill : lightgreen;
