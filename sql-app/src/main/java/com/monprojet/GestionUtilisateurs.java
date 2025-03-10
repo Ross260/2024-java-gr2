@@ -112,7 +112,7 @@ public class GestionUtilisateurs {
     }
 
     public void supprimerUtilisateur(int id) {
-        String sql = "DELETE FROM utilisateur WHERE id = ?";
+        String sql = "DELETE FROM utilisateurs WHERE id = ?";
         try (PreparedStatement pstmt = link.connexion.prepareStatement(sql)) {
             pstmt.setInt(1, id);
             pstmt.executeUpdate();
@@ -136,7 +136,7 @@ public class GestionUtilisateurs {
     }
 
     public void afficherUtilisateurs() {
-        String sql = "SELECT * FROM utilisateur";
+        String sql = "SELECT * FROM utilisateurs";
         try (PreparedStatement pstmt = link.connexion.prepareStatement(sql);
              ResultSet rs = pstmt.executeQuery()) {
             while (rs.next()) {
@@ -169,30 +169,4 @@ public class GestionUtilisateurs {
         }
     }
 
-//     public void toCSV() {
-//         String csvFile = "chemin du csv";
-//         String sql = "SELECT * FROM utilisateur";
-
-//         try (PreparedStatement pstmt = link.connexion.prepareStatement(sql);
-//              ResultSet rs = pstmt.executeQuery();
-//              FileWriter writer = new FileWriter(csvFile)) {
-
-//             // Écrire l'en-tête du fichier CSV
-//             writer.append("ID,Nom,Email,Cree le,Mis a jour le\n");
-
-//             // Parcourir les résultats et écrire chaque ligne dans le fichier CSV
-//             while (rs.next()) {
-//                 writer.append(String.valueOf(rs.getInt("id"))).append(",");
-//                 writer.append(rs.getString("nom")).append(",");
-//                 writer.append(rs.getString("email")).append(",");
-//                 writer.append(rs.getTimestamp("created_at").toString()).append(",");
-//                 writer.append(rs.getTimestamp("updated_at").toString()).append("\n");
-//             }
-
-//             System.out.println("Exportation vers CSV terminée. Fichier sauvegardé à : " + csvFile);
-
-//         } catch (SQLException | IOException e) {
-//             e.printStackTrace();
-//         }
-//     }
 }
