@@ -1,4 +1,4 @@
-.label {
+.root {
         -fx-text-fill : red;
         -fx-alignment: center;
         -fx-font-family: "Arial", sans-serif;
@@ -12,6 +12,8 @@
         -fx-background-image: url("../images/R.png");
         -fx-background-size: cover;
         -fx-background-repeat: no-repeat;
+        -fx-background-color: #f4f4f4; /* Couleur de fond */
+        -fx-font-family: 'Arial';
         
 }
 
@@ -22,11 +24,6 @@
 }
 
 /* Formulaire */
-
-.root {
-        -fx-background-color: #f4f4f4; /* Couleur de fond */
-        -fx-font-family: 'Arial';
-    }
     
     .label {
         -fx-font-size: 14px;
@@ -41,7 +38,7 @@
     }
     
     .button {
-        -fx-background-color: #4CAF50; /* Couleur de fond */
+        -fx-background-color: #238ea3; /* Couleur de fond */
         -fx-text-fill: white; /* Couleur du texte */
         -fx-font-size: 14px;
         -fx-border-radius: 5px;

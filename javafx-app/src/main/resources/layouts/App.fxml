@@ -11,3 +11,4 @@
     <Label fx:id="messageLabel" text="Bonjour, JavaFX !"/>
     <Button fx:id="clickButton" text="Cliquez-moi !"/>
 </VBox>
+

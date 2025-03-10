@@ -48,7 +48,7 @@ public class Utilisateur {
         return this.created_at;
     }
 
-    public void setUpdatedAt(Timestamp update_at) {
+    public void setUpdatedAt(Timestamp updated_at) {
         this.updated_at = updated_at;
     }
 

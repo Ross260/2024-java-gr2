@@ -8,11 +8,26 @@ public class Connexion {
     private static final String url = "jdbc:mysql://localhost:3306/mabasegrp2"; 
     private static final String utilisateur = "root";
     private static final String motDePasse = "";
-    Connection connexion = null;
+    Connection connexion ;
 
 
-    public Connection getConnection() throws SQLException {
-        return DriverManager.getConnection(url, utilisateur, motDePasse);
+    public Connection Connection() throws SQLException {
+        // return DriverManager.getConnection(url, utilisateur, motDePasse);
+        try {
+            // Établir la connexion
+            this.connexion = DriverManager.getConnection(url, utilisateur, motDePasse);
+            System.out.println("Connexion à la base de données réussie !");
+        } catch (SQLException e) {
+            System.err.println("Erreur lors de la connexion à la base de données : " + e.getMessage());
+        }
+
+        return this.connexion;
+    }
+
+    public void close() throws SQLException {
+        if (connexion != null && !connexion.isClosed()) {
+            connexion.close();
+        }
     }
 }
 
