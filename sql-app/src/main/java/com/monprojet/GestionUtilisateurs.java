@@ -151,22 +151,35 @@ public class GestionUtilisateurs {
         }
     }
 
-    public void rechercherUtilisateur(String motClef) {
-        String sql = "SELECT * FROM utilisateur WHERE nom LIKE ? OR email LIKE ?";
-        try (PreparedStatement pstmt = link.connexion.prepareStatement(sql)) {
-            pstmt.setString(1, "%" + motClef + "%");
-            pstmt.setString(2, "%" + motClef + "%");
-            ResultSet rs = pstmt.executeQuery();
+    public void searchUtilisateurByName(String nom) {
+        try {
+            String sqlSearch = "SELECT id, nom, email FROM utilisateurs WHERE nom LIKE ?";
+            PreparedStatement pstmtSearch = this.link.connexion.prepareStatement(sqlSearch);
+            pstmtSearch.setString(1, "%" + nom + "%");
+            ResultSet rs = pstmtSearch.executeQuery();
+            
             while (rs.next()) {
-                System.out.println("ID: " + rs.getInt("id") +
-                        ", Email: " + rs.getString("email") +
-                        ", Nom: " + rs.getString("nom") +
-                        ", Créé le: " + rs.getTimestamp("created_at") +
-                        ", Mis à jour le: " + rs.getTimestamp("updated_at"));
+                System.out.println("ID : " + rs.getInt("id") + ", Nom : " + rs.getString("nom") + ", Email : " + rs.getString("email"));
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            System.out.println("Erreur de connexion : " + e.getMessage());
         }
     }
+
+    public void searchUtilisateurByEmail(String email) {
+        try {
+            String sqlSearch = "SELECT id, nom, email FROM utilisateurs WHERE email LIKE ?";
+            PreparedStatement pstmtSearch = this.link.connexion.prepareStatement(sqlSearch);
+            pstmtSearch.setString(1, "%" + email + "%");
+            ResultSet rs = pstmtSearch.executeQuery();
+            
+            while (rs.next()) {
+                System.out.println("ID : " + rs.getInt("id") + ", Nom : " + rs.getString("nom") + ", Email : " + rs.getString("email"));
+            }
+        } catch (SQLException e) {
+            System.out.println("Erreur de connexion : " + e.getMessage());
+        }
+    }
+
 
 }

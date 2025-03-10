@@ -100,9 +100,7 @@ public class App {
                 System.out.println("3- Supprimer un utilisateur par son id");
                 System.out.println("4- Edit d'un utilisateur par son id");
                 System.out.println("5: Rechercher un utilisateur par nom ou email");
-                
-                System.out.println("6: Sauver tous les utilisateurs");
-                System.out.println("7: Quitter");
+                System.out.println("6: Quitter");
                 System.out.print("Choisissez une option : ");
                 choix = scanner.nextInt();
                 scanner.nextLine(); // Pour consommer la nouvelle ligne
@@ -135,20 +133,30 @@ public class App {
                         gestionUtilisateurs.modifierUtilisateur(idModifier, nouveauNom, nouvelEmail);
                         break;
                     case 5:
-                        System.out.print("Entrez un mot-clé pour rechercher un utilisateur : ");
-                        String motCle = scanner.nextLine();
-                        gestionUtilisateurs.rechercherUtilisateur(motCle);
+                        System.out.print("Rechercher par (1: Nom, 2: Email): ");
+                        int searchType = scanner.nextInt();
+                        scanner.nextLine(); // Consommer la ligne restante
+                        
+                        if (searchType == 1) {
+                            System.out.print("Entrez le nom: ");
+                            String searchNom = scanner.nextLine();
+                            gestionUtilisateurs.searchUtilisateurByName(searchNom);
+                        } else if (searchType == 2) {
+                            System.out.print("Entrez l'email: ");
+                            String searchEmail = scanner.nextLine();
+                            gestionUtilisateurs.searchUtilisateurByEmail(searchEmail);
+                        } else {
+                            System.out.println("Choix invalide.");
+                        }
+                        System.out.println("---------------------");
                         break;
                     case 6:
-                        // gestionUtilisateurs.toCSV();
-                        break;
-                    case 7:
-                        System.out.println("Au revoir !");
+                    System.out.println("A bientot !");
                         break;
                     default:
                         System.out.println("Option invalide. Veuillez réessayer.");
                 }
-            } while (choix != 7);
+            } while (choix != 6);
 
         } catch (SQLException e) {
             e.printStackTrace();
