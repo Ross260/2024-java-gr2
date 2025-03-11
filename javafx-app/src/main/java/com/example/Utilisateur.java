@@ -1,4 +1,4 @@
-package com.monprojet;
+package com.example;
 
 import java.sql.Timestamp;
 

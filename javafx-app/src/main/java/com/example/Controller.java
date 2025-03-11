@@ -1,16 +1,36 @@
-package com.example;
+// package com.example;
 
-import javafx.fxml.FXML;
-import javafx.scene.control.Label;
+// import javafx.fxml.FXML;
+// import javafx.scene.control.TextField;
 
-public class Controller {
+// public class Controller {
 
-    @FXML
-    private Label monLabel; // Référence au label dans le FXML
+//     // Références aux champs de saisie dans le FXML
+//     @FXML
+//     private TextField nomField;
 
-    // Méthode appelée lors du clic sur le bouton
-    @FXML
-    private void changerTexte() {
-        monLabel.setText("Vous avez cliqué sur le bouton !");
-    }
-}
+//     @FXML
+//     private TextField prenomField;
+
+//     @FXML
+//     private TextField emailField;
+
+//     // Méthode appelée lors du clic sur le bouton "Ajouter"
+//     @FXML
+//     private void handleAjouter() {
+//         // Récupérer les valeurs des champs de saisie
+//         String nom = nomField.getText();
+//         String prenom = prenomField.getText();
+//         String email = emailField.getText();
+
+//         // Afficher les valeurs dans la console (ou les stocker dans des variables)
+//         System.out.println("Nom: " + nom);
+//         System.out.println("Prenom: " + prenom);
+//         System.out.println("Email: " + email);
+
+//         // Optionnel : Effacer les champs après l'ajout
+//         nomField.clear();
+//         prenomField.clear();
+//         emailField.clear();
+//     }
+// }

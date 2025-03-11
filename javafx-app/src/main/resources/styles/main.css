@@ -1,22 +1,3 @@
-.root {
-        -fx-text-fill : red;
-        -fx-alignment: center;
-        -fx-font-family: "Arial", sans-serif;
-        -fx-padding: 10px 20px;
-        -fx-font-size: 25px;
-        -fx-background-color: aqua;
-        /* -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.2), 10, 0, 0, 2);
-        -fx-transition: all 0.3s ease;
-        -fx-border-radius: 5px; */
-
-        -fx-background-image: url("../images/R.png");
-        -fx-background-size: cover;
-        -fx-background-repeat: no-repeat;
-        -fx-background-color: #f4f4f4; /* Couleur de fond */
-        -fx-font-family: 'Arial';
-        
-}
-
 .label:hover {
         -fx-text-fill : lightgreen;
         -fx-effect: dropshadow(gaussian, rgba(0, 255, 0, 0.2), 10, 0, 0, 2);
@@ -43,6 +24,7 @@
         -fx-font-size: 14px;
         -fx-border-radius: 5px;
         -fx-padding: 10px 20px;
+        -fx-margin-top: 200;
     }
     
     .button:hover {
