@@ -11,18 +11,21 @@ public class Connexion {
     Connection connexion ;
 
 
-    public Connection Connection() throws SQLException {
-        // return DriverManager.getConnection(url, utilisateur, motDePasse);
+    public Connection Connection() {
         try {
-            // Établir la connexion
+            Class.forName("com.mysql.cj.jdbc.Driver");
             this.connexion = DriverManager.getConnection(url, utilisateur, motDePasse);
-            System.out.println("Connexion a la base de donnees reussie !");
+            System.out.println("Connexion réussie !");
+        } catch (ClassNotFoundException e) {
+            System.err.println("Pilote JDBC introuvable : " + e.getMessage());
         } catch (SQLException e) {
-            System.err.println("Erreur lors de la connexion à la base de donnees : " + e.getMessage());
+            System.err.println("Erreur SQL : " + e.getMessage());
         }
-
+    
         return this.connexion;
     }
+    
+    
 
     public void close() throws SQLException {
         if (connexion != null && !connexion.isClosed()) {
