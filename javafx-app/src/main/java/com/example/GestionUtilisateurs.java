@@ -119,8 +119,8 @@ public class GestionUtilisateurs {
 
                 System.out.println(rs.getString("nom"));
                 System.out.println(rs.getString("email"));
-                System.out.println(rs.getString("created_at"));
-                System.out.println(rs.getString("updated_at"));
+                System.out.println(rs.getTimestamp("created_at"));
+                System.out.println(rs.getTimestamp("updated_at"));
             }
         } catch (SQLException e) {
             e.printStackTrace();

@@ -120,10 +120,10 @@ public class App extends Application {
             colEmail.setCellValueFactory(new PropertyValueFactory<>("email"));
 
             TableColumn<Utilisateur, Timestamp> colCreatedAt = new TableColumn<>("Créé le");
-            colCreatedAt.setCellValueFactory(new PropertyValueFactory<>("created_at"));
+            colCreatedAt.setCellValueFactory(new PropertyValueFactory<>("createdAt"));
 
             TableColumn<Utilisateur, Timestamp> colUpdatedAt = new TableColumn<>("Mis à jour le");
-            colUpdatedAt.setCellValueFactory(new PropertyValueFactory<>("updated_at"));
+            colUpdatedAt.setCellValueFactory(new PropertyValueFactory<>("updatedAt"));
 
             // Création de la TableView et ajout des colonnes
              tableView = new TableView<>();
