@@ -15,7 +15,7 @@ public class Connexion {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
             this.connexion = DriverManager.getConnection(url, utilisateur, motDePasse);
-            System.out.println("Connexion réussie !");
+            System.out.println("Connexion reussie !");
         } catch (ClassNotFoundException e) {
             System.err.println("Pilote JDBC introuvable : " + e.getMessage());
         } catch (SQLException e) {

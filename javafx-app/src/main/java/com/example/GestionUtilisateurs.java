@@ -63,7 +63,7 @@ public class GestionUtilisateurs {
                 System.out.println("ID: " + rs.getInt("id") +
                         ", Email: " + rs.getString("email") +
                         ", Nom: " + rs.getString("nom") +
-                        ", Créé le: " + rs.getTimestamp("created_at") +
+                        ", Cree le: " + rs.getTimestamp("created_at") +
                         ", Mis à jour le: " + rs.getTimestamp("updated_at"));
             }
         } catch (SQLException e) {
@@ -101,5 +101,32 @@ public class GestionUtilisateurs {
         }
     }
 
+    public List<Utilisateur> getAllUtilisateurs() {
+        List<Utilisateur> utilisateurs = new ArrayList<>();
+        String sql = "SELECT * FROM utilisateurs";
+        try (PreparedStatement pstmt = link.connexion.prepareStatement(sql);
+             ResultSet rs = pstmt.executeQuery()) {
+    
+            while (rs.next()) {
+                Utilisateur user = new Utilisateur(
+                    rs.getString("nom"),
+                    rs.getString("email"),
+                    rs.getTimestamp("created_at"),
+                    rs.getTimestamp("updated_at")
+                );
+                user.setId(rs.getInt("id"));
+                utilisateurs.add(user);
+
+                System.out.println(rs.getString("nom"));
+                System.out.println(rs.getString("email"));
+                System.out.println(rs.getString("created_at"));
+                System.out.println(rs.getString("updated_at"));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return utilisateurs;
+    }
+    
 
 }

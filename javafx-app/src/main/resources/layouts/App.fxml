@@ -1,3 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?xml version="1.0" encoding="UTF-8"?>
+
+<VBox spacing="10" xmlns:fx="http://javafx.com/fxml"
+      xmlns="http://javafx.com/javafx/17" fx:controller="com.example.Controller"
+      padding="20">
+
+    <TableView fx:id="tableView" prefHeight="400" prefWidth="600">
+        <columns>
+            <TableColumn fx:id="colId" text="ID" prefWidth="50"/>
+            <TableColumn fx:id="colNom" text="Nom" prefWidth="150"/>
+            <TableColumn fx:id="colEmail" text="Email" prefWidth="200"/>
+            <TableColumn fx:id="colCreated" text="Créé le" prefWidth="100"/>
+            <TableColumn fx:id="colUpdated" text="Mis à jour le" prefWidth="100"/>
+        </columns>
+    </TableView>
+
+    <Button text="Actualiser la liste" onAction="#refreshTable"/>
+
+</VBox>
+
+
 <!-- <?xml version="1.0" encoding="UTF-8"?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
@@ -29,3 +53,4 @@
     <!-- Bouton Ajouter -->
     <Button text="Ajouter" onAction="#handleAjouter"/>
 </VBox> -->
+

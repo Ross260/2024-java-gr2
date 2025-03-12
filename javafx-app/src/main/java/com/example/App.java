@@ -1,15 +1,26 @@
 package com.example;
 
+import java.io.IOException;
 import java.sql.SQLException;
 
 import javafx.application.Application;
+import javafx.collections.FXCollections;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import javafx.fxml.FXMLLoader;
+
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
+import java.sql.Timestamp;
+
+
 
 public class App extends Application {
 
@@ -55,8 +66,9 @@ public class App extends Application {
     }
 
     // Fonction pour ouvrir des fenêtres spécifiques
+    @SuppressWarnings("unchecked")
     private void ouvrirFenetre(String titre) {
-        Stage stage = new Stage();
+        final Stage stage = new Stage();
         VBox vbox = new VBox(10);
         vbox.setPadding(new Insets(20));
 
@@ -92,9 +104,46 @@ public class App extends Application {
                 btnConfirmer, retour
             );
         }else if (titre.equals("Liste des utilisateurs")) {
-            System.out.println("en cours");
-        } 
-        else {
+            Stage stageListe = new Stage();
+            stageListe.setTitle("Liste des utilisateurs");
+
+            // Création TableView
+            TableView<Utilisateur> tableView = new TableView<>();
+
+            TableColumn<Utilisateur, Integer> colId = new TableColumn<>("ID");
+            colId.setCellValueFactory(new PropertyValueFactory<>("id"));
+
+            TableColumn<Utilisateur, String> colNom = new TableColumn<>("Nom");
+            colNom.setCellValueFactory(new PropertyValueFactory<>("nom"));
+
+            TableColumn<Utilisateur, String> colEmail = new TableColumn<>("Email");
+            colEmail.setCellValueFactory(new PropertyValueFactory<>("email"));
+
+            TableColumn<Utilisateur, Timestamp> colCreatedAt = new TableColumn<>("Créé le");
+            colCreatedAt.setCellValueFactory(new PropertyValueFactory<>("created_at"));
+
+            TableColumn<Utilisateur, Timestamp> colUpdatedAt = new TableColumn<>("Mis à jour le");
+            colUpdatedAt.setCellValueFactory(new PropertyValueFactory<>("updated_at"));
+
+            // Création de la TableView et ajout des colonnes
+             tableView = new TableView<>();
+            tableView.getColumns().addAll(colId, colNom, colEmail, colCreatedAt, colUpdatedAt);
+
+            // Chargement des données depuis la méthode getAllUtilisateurs()
+            tableView.setItems(FXCollections.observableArrayList(gestionUtilisateurs.getAllUtilisateurs()));
+
+            retour = new Button("Retour");
+            retour.setOnAction(e -> stageListe.close());
+
+            vbox = new VBox(10);
+            vbox.setPadding(new Insets(15));
+            vbox.getChildren().addAll(tableView, retour);
+
+            Scene scene = new Scene(vbox, 650, 400);
+            stageListe.setScene(scene);
+            stageListe.show();
+        }
+         else {
             Label label = new Label("Fenêtre : " + titre + " (en attente d'implémentation)");
             vbox.getChildren().addAll(label, retour);
         }
