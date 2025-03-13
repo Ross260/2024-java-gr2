@@ -8,6 +8,7 @@ import javafx.collections.FXCollections;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -17,8 +18,10 @@ import javafx.fxml.FXMLLoader;
 
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.cell.PropertyValueFactory;
 import java.sql.Timestamp;
+import java.util.List;
 
 
 
@@ -65,7 +68,7 @@ public class App extends Application {
         primaryStage.show();
     }
 
-    // Fonction pour ouvrir des fenêtres spécifiques
+    // Fonction pour ouvrir des fenêtres specifiques
     @SuppressWarnings("unchecked")
     private void ouvrirFenetre(String titre) {
         final Stage stage = new Stage();
@@ -91,7 +94,7 @@ public class App extends Application {
                 System.out.println("Nom : " + nom);
                 System.out.println("Email : " + email);
 
-                // Appel à la méthode d'ajout en base de données
+                // Appel à la methode d'ajout en base de donnees
                 gestionUtilisateurs.insererUtilisateur(nom, email);
 
                 fieldNom.clear();
@@ -107,7 +110,7 @@ public class App extends Application {
             Stage stageListe = new Stage();
             stageListe.setTitle("Liste des utilisateurs");
 
-            // Création TableView
+            // Creation TableView
             TableView<Utilisateur> tableView = new TableView<>();
 
             TableColumn<Utilisateur, Integer> colId = new TableColumn<>("ID");
@@ -119,17 +122,17 @@ public class App extends Application {
             TableColumn<Utilisateur, String> colEmail = new TableColumn<>("Email");
             colEmail.setCellValueFactory(new PropertyValueFactory<>("email"));
 
-            TableColumn<Utilisateur, Timestamp> colCreatedAt = new TableColumn<>("Créé le");
+            TableColumn<Utilisateur, Timestamp> colCreatedAt = new TableColumn<>("Cre le");
             colCreatedAt.setCellValueFactory(new PropertyValueFactory<>("createdAt"));
 
             TableColumn<Utilisateur, Timestamp> colUpdatedAt = new TableColumn<>("Mis à jour le");
             colUpdatedAt.setCellValueFactory(new PropertyValueFactory<>("updatedAt"));
 
-            // Création de la TableView et ajout des colonnes
+            // Creation de la TableView et ajout des colonnes
              tableView = new TableView<>();
             tableView.getColumns().addAll(colId, colNom, colEmail, colCreatedAt, colUpdatedAt);
 
-            // Chargement des données depuis la méthode getAllUtilisateurs()
+            // Chargement des donnees depuis la methode getAllUtilisateurs()
             tableView.setItems(FXCollections.observableArrayList(gestionUtilisateurs.getAllUtilisateurs()));
 
             retour = new Button("Retour");
@@ -143,8 +146,151 @@ public class App extends Application {
             stageListe.setScene(scene);
             stageListe.show();
         }
-         else {
-            Label label = new Label("Fenêtre : " + titre + " (en attente d'implémentation)");
+        else if (titre.equals("Supprimer utilisateur")) {
+            Stage stageSuppression = new Stage();
+            stageSuppression.setTitle("Supprimer un utilisateur");
+        
+            vbox = new VBox(10);
+            vbox.setPadding(new Insets(20));
+        
+            Label lblId = new Label("ID utilisateur à supprimer :");
+            TextField fieldId = new TextField();
+            fieldId.setPromptText("Entrez l'ID");
+        
+            Button btnSupprimer = new Button("Confirmer suppression");
+            btnSupprimer.setOnAction(e -> {
+                try {
+                    int id = Integer.parseInt(fieldId.getText());
+                    gestionUtilisateurs.supprimerUtilisateur(id);
+                    fieldId.clear();
+                } catch (NumberFormatException ex) {
+                    System.err.println("Veuillez entrer un ID valide (nombre entier).");
+                }
+            });
+        
+            retour = new Button("Retour");
+            retour.setOnAction(e -> stageSuppression.close());
+        
+            vbox.getChildren().addAll(lblId, fieldId, btnSupprimer, retour);
+        
+            Scene scene = new Scene(vbox, 350, 200);
+            stageSuppression.setScene(scene);
+            stageSuppression.show();
+        }
+        
+        else if (titre.equals("Modifier utilisateur")) {
+            Stage stageModification = new Stage();
+           
+            stageModification.setTitle("Modifier un utilisateur");
+        
+            vbox = new VBox(10);
+            vbox.setPadding(new Insets(20));
+        
+            Label lblId = new Label("ID utilisateur :");
+            TextField fieldId = new TextField();
+            fieldId.setPromptText("Entrez l'ID");
+        
+            Label lblNom = new Label("Nom :");
+            TextField fieldNom = new TextField();
+            fieldNom.setPromptText("Entrez le nouveau nom");
+        
+            Label lblEmail = new Label("Email :");
+            TextField fieldEmail = new TextField();
+            fieldEmail.setPromptText("Entrez le nouvel email");
+        
+            Button btnConfirmer = new Button("Confirmer modification");
+            btnConfirmer.setOnAction(e -> {
+                int id = Integer.parseInt(fieldId.getText());
+                String nom = fieldNom.getText();
+                String email = fieldEmail.getText();
+        
+                // Appel à la methode de modification en base de donnees
+                gestionUtilisateurs.modifierUtilisateur(id, nom, email);
+        
+                fieldId.clear();
+                fieldNom.clear();
+                fieldEmail.clear();
+            });
+        
+            retour = new Button("Retour");
+            retour.setOnAction(e -> stage.close());
+        
+            vbox.getChildren().addAll(
+                lblNom, fieldNom,
+                lblEmail, fieldEmail,
+                lblId, fieldId,
+                btnConfirmer, retour
+            );}  
+            else if (titre.equals("Rechercher utilisateur")) {
+                Stage stageRecherche = new Stage();
+                stageRecherche.setTitle("Rechercher un utilisateur");
+
+                vbox = new VBox(10);
+                vbox.setPadding(new Insets(20));
+
+                // Label et champ pour la recherche
+                Label lblCritere = new Label("Rechercher un utilisateur par :");
+                ComboBox<String> critereBox = new ComboBox<>();
+                critereBox.getItems().addAll("Email", "Nom");
+                critereBox.setValue("Email"); // Valeur par défaut
+
+                Label lblRecherche = new Label("Valeur de recherche :");
+                TextField fieldRecherche = new TextField();
+                fieldRecherche.setPromptText("Entrez l'email ou le nom");
+
+                TextArea resultArea = new TextArea();
+                resultArea.setEditable(false);
+                resultArea.setPromptText("Résultat de la recherche...");
+
+                // Bouton de recherche
+                Button btnRechercher = new Button("Rechercher");
+                btnRechercher.setOnAction(e -> {
+                    resultArea.clear();
+                    String valeurRecherche = fieldRecherche.getText();
+
+                    // Vérification du critère sélectionné
+                    if (valeurRecherche.isEmpty()) {
+                        resultArea.setText("Veuillez entrer une valeur pour rechercher.");
+                        return;
+                    }
+
+                    try {
+                        List<Utilisateur> utilisateurs;
+                        if (critereBox.getValue().equals("Email")) {
+                            utilisateurs = gestionUtilisateurs.searchUtilisateurByEmail(valeurRecherche);
+                        } else {
+                            utilisateurs = (List<Utilisateur>) gestionUtilisateurs.searchUtilisateurByName(valeurRecherche);
+                        }
+
+                        if (!utilisateurs.isEmpty()) {
+                            for (Utilisateur user : utilisateurs) {
+                                resultArea.appendText("ID : " + user.getId() + 
+                                    ", Nom : " + user.getNom() + 
+                                    ", Email : " + user.getEmail() + "\n");
+                            }
+                        } else {
+                            resultArea.setText("Aucun utilisateur trouvé.");
+                        }
+                    } catch (Exception ex) {
+                        resultArea.setText("Erreur lors de la recherche : " + ex.getMessage());
+                        ex.printStackTrace();
+                    }
+                });
+
+                // Bouton retour
+                retour = new Button("Retour");
+                retour.setOnAction(e -> stageRecherche.close());
+
+                vbox.getChildren().addAll(lblCritere, critereBox, lblRecherche, fieldRecherche, btnRechercher, resultArea, retour);
+
+                Scene scene = new Scene(vbox, 600, 400);
+                stageRecherche.setScene(scene);
+                stageRecherche.show();
+            }
+
+                  
+            else {
+            Label label = new Label("Fenêtre : " + titre + " (en attente d'implementation)");
             vbox.getChildren().addAll(label, retour);
         }
 

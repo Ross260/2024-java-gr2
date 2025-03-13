@@ -25,7 +25,7 @@ public class GestionUtilisateurs {
             pstmt.setString(1, nom);
             pstmt.setString(2, email);
             pstmt.executeUpdate();
-            System.out.println("Insertion de l'utilisateur réussi");
+            System.out.println("Insertion de l'utilisateur reussi");
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -36,7 +36,7 @@ public class GestionUtilisateurs {
         try (PreparedStatement pstmt = link.connexion.prepareStatement(sql)) {
             pstmt.setInt(1, id);
             pstmt.executeUpdate();
-            System.out.println("Utilisateur supprimé avec succès.");
+            System.out.println("Utilisateur supprimer avec succes.");
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -49,7 +49,7 @@ public class GestionUtilisateurs {
             pstmt.setString(2, email);
             pstmt.setInt(3, id);
             pstmt.executeUpdate();
-            System.out.println("Utilisateur modifié avec succès.");
+            System.out.println("Utilisateur modifier avec succes.");
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -71,35 +71,62 @@ public class GestionUtilisateurs {
         }
     }
 
-    public void searchUtilisateurByName(String nom) {
-        try {
-            String sqlSearch = "SELECT id, nom, email FROM utilisateurs WHERE nom LIKE ?";
-            PreparedStatement pstmtSearch = this.link.connexion.prepareStatement(sqlSearch);
-            pstmtSearch.setString(1, "%" + nom + "%");
-            ResultSet rs = pstmtSearch.executeQuery();
-            
+    public List<Utilisateur> searchUtilisateurByName(String nom) {
+        List<Utilisateur> utilisateurs = new ArrayList<>();
+        String sql = "SELECT * FROM utilisateurs WHERE nom LIKE ?";
+        try (PreparedStatement pstmt = link.connexion.prepareStatement(sql)) {
+            pstmt.setString(1, "%" + nom + "%");
+            ResultSet rs = pstmt.executeQuery();
+    
             while (rs.next()) {
-                System.out.println("ID : " + rs.getInt("id") + ", Nom : " + rs.getString("nom") + ", Email : " + rs.getString("email"));
+                Utilisateur user = new Utilisateur(
+                    rs.getString("nom"),
+                    rs.getString("email"),
+                    rs.getTimestamp("created_at"),
+                    rs.getTimestamp("updated_at")
+                );
+                user.setId(rs.getInt("id"));
+                utilisateurs.add(user);
             }
         } catch (SQLException e) {
-            System.out.println("Erreur de connexion : " + e.getMessage());
+            e.printStackTrace();
         }
+        return utilisateurs;
     }
+    
 
-    public void searchUtilisateurByEmail(String email) {
-        try {
-            String sqlSearch = "SELECT id, nom, email FROM utilisateurs WHERE email LIKE ?";
-            PreparedStatement pstmtSearch = this.link.connexion.prepareStatement(sqlSearch);
-            pstmtSearch.setString(1, "%" + email + "%");
-            ResultSet rs = pstmtSearch.executeQuery();
-            
+    public List<Utilisateur> searchUtilisateurByEmail(String email) {
+        List<Utilisateur> utilisateurs = new ArrayList<>();
+        String sql = "SELECT * FROM utilisateurs WHERE email LIKE ?";
+        
+        try (PreparedStatement pstmt = link.connexion.prepareStatement(sql)) {
+            pstmt.setString(1, "%" + email + "%");
+            ResultSet rs = pstmt.executeQuery();
+    
             while (rs.next()) {
-                System.out.println("ID : " + rs.getInt("id") + ", Nom : " + rs.getString("nom") + ", Email : " + rs.getString("email"));
+                Utilisateur user = new Utilisateur(
+                    rs.getString("nom"),
+                    rs.getString("email"),
+                    rs.getTimestamp("created_at"),
+                    rs.getTimestamp("updated_at")
+                );
+                user.setId(rs.getInt("id"));
+    
+                if (user == null) { // Vérifie si l'objet est null
+                    System.err.println("ERREUR : Un utilisateur null a été ajouté !");
+                }
+    
+                utilisateurs.add(user);
             }
+    
+            System.out.println("Recherche complétée : " + utilisateurs.size() + " utilisateurs trouvés.");
+    
         } catch (SQLException e) {
-            System.out.println("Erreur de connexion : " + e.getMessage());
+            e.printStackTrace();
         }
+        return utilisateurs;
     }
+    
 
     public List<Utilisateur> getAllUtilisateurs() {
         List<Utilisateur> utilisateurs = new ArrayList<>();
@@ -127,6 +154,4 @@ public class GestionUtilisateurs {
         }
         return utilisateurs;
     }
-    
-
 }
