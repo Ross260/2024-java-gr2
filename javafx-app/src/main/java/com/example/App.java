@@ -7,6 +7,7 @@ import javafx.application.Application;
 import javafx.collections.FXCollections;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
@@ -46,12 +47,14 @@ public class App extends Application {
         Button btnSupprimer = new Button("Supprimer utilisateur");
         Button btnModifier = new Button("Modifier utilisateur");
         Button btnRechercher = new Button("Rechercher utilisateur");
+        Button btnTocsv = new Button("Convertir en CSV");
 
         btnListe.setMaxWidth(200);
         btnAjouter.setMaxWidth(200);
         btnSupprimer.setMaxWidth(200);
         btnModifier.setMaxWidth(200);
         btnRechercher.setMaxWidth(200);
+        btnTocsv.setMaxWidth(200);
 
         // Actions des boutons
         btnListe.setOnAction(e -> ouvrirFenetre("Liste des utilisateurs"));
@@ -59,8 +62,9 @@ public class App extends Application {
         btnSupprimer.setOnAction(e -> ouvrirFenetre("Supprimer utilisateur"));
         btnModifier.setOnAction(e -> ouvrirFenetre("Modifier utilisateur"));
         btnRechercher.setOnAction(e -> ouvrirFenetre("Rechercher utilisateur"));
+        btnTocsv.setOnAction(e -> ouvrirFenetre("Convertir en CSV"));
 
-        root.getChildren().addAll(btnListe, btnAjouter, btnSupprimer, btnModifier, btnRechercher);
+        root.getChildren().addAll(btnListe, btnAjouter, btnSupprimer, btnModifier, btnRechercher, btnTocsv);
 
         Scene scene = new Scene(root, 400, 300);
         primaryStage.setScene(scene);
@@ -286,6 +290,39 @@ public class App extends Application {
                 Scene scene = new Scene(vbox, 600, 400);
                 stageRecherche.setScene(scene);
                 stageRecherche.show();
+            }
+            else if (titre.equals("Convertir en CSV")) {
+                Stage stageCsv = new Stage();
+                stageCsv.setTitle("Exporter les utilisateurs en CSV");
+
+                vbox = new VBox(10);
+                vbox.setPadding(new Insets(20));
+
+                Label lblInfo = new Label("Cliquez sur le bouton ci-dessous pour exporter les utilisateurs en CSV.");
+
+                Button btnExporter = new Button("Exporter en CSV");
+                btnExporter.setOnAction(e -> {
+                    List<Utilisateur> utilisateurs = gestionUtilisateurs.getAllUtilisateurs(); // Récupération de la liste des utilisateurs
+                    String cheminFichier = "utilisateurs.csv"; // Nom du fichier de sortie
+
+                    // Appel de la classe de conversion
+                    ConvertToCsv.convertirListeUtilisateursEnCsv(utilisateurs, cheminFichier);
+
+                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                    alert.setTitle("Exportation terminée");
+                    alert.setHeaderText(null);
+                    alert.setContentText("Fichier CSV généré avec succès : " + cheminFichier);
+                    alert.showAndWait();
+                });
+
+                retour = new Button("Retour");
+                retour.setOnAction(e -> stageCsv.close());
+
+                vbox.getChildren().addAll(lblInfo, btnExporter, retour);
+
+                Scene scene = new Scene(vbox, 400, 200);
+                stageCsv.setScene(scene);
+                stageCsv.show();
             }
 
                   
