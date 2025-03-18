@@ -66,7 +66,11 @@ public class App extends Application {
 
         root.getChildren().addAll(btnListe, btnAjouter, btnSupprimer, btnModifier, btnRechercher, btnTocsv);
 
-        Scene scene = new Scene(root, 400, 300);
+        Scene scene = new Scene(root, 600, 500);
+        // Charger le fichier CSS
+        String css = getClass().getResource("/styles/main.css").toExternalForm();
+        scene.getStylesheets().add(css);
+
         primaryStage.setScene(scene);
         primaryStage.setTitle("Gestion des utilisateurs");
         primaryStage.show();
@@ -100,7 +104,7 @@ public class App extends Application {
 
                 // Appel à la methode d'ajout en base de donnees
                 gestionUtilisateurs.insererUtilisateur(nom, email);
-
+                
                 fieldNom.clear();
                 fieldEmail.clear();
             });
@@ -178,6 +182,7 @@ public class App extends Application {
             vbox.getChildren().addAll(lblId, fieldId, btnSupprimer, retour);
         
             Scene scene = new Scene(vbox, 350, 200);
+
             stageSuppression.setScene(scene);
             stageSuppression.show();
         }
