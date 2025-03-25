@@ -105,6 +105,12 @@ public class App extends Application {
                 // Appel à la methode d'ajout en base de donnees
                 gestionUtilisateurs.insererUtilisateur(nom, email);
                 
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Ajout");
+                alert.setHeaderText(null);
+                alert.setContentText("Utilisateur ajouter avec succes");
+                alert.showAndWait();
+
                 fieldNom.clear();
                 fieldEmail.clear();
             });
